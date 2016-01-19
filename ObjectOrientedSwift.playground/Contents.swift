@@ -11,8 +11,34 @@ struct Point {
     // here we created 2 stored properties, with names x and y, of type Int
     let x: Int
     let y: Int
+    
+    //Initializer Method
+    // We don't have to name it
+    //self.x and self.y tell Swift it means the stored properties, created as constants in the lines above
+    init(x: Int, y: Int) {
+        self.x = x
+        self.y = y
+    }
+    
+    // Can have functions inside a Struct
+    // we gave the range var a default value of 1
+    // we are specifying the functions return type as an array of Point
+    //This function is an instance method, because it can only be called when we have an instance of Point
+    func surroundingPoints(withRange range: Int = 1) -> [Point] {
+        //a var of type Point array, assigned to an empty array, because we will be adding items to it later
+        var results: [Point] = []
+        for xCoord in (x-range)...(x+range) {
+            for yCoord in (y-range)...(y+range) {
+                let coordinatePoint = Point(x: xCoord, y: yCoord)
+                results.append(coordinatePoint)
+            }
+        }
+        return results
+    }
 }
 
 // Creates an Instance of the Struct "Point"
-let coordinatePoint = Point(x: 0, y: 0)
-coordinatePoint.x //shows the value of x
+let coordinatePoint = Point(x: 2, y: 2)
+
+//Calls the function in the Struct, using the values we assigned in the coordinatePoint constant above
+coordinatePoint.surroundingPoints()
