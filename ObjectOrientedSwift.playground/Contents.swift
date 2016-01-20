@@ -42,3 +42,72 @@ let coordinatePoint = Point(x: 2, y: 2)
 
 //Calls the function in the Struct, using the values we assigned in the coordinatePoint constant above
 coordinatePoint.surroundingPoints()
+
+
+// Classes in Swift
+
+
+class Enemy {
+    //Stored properties
+    //If we don't give a default value, get an error
+    var life: Int = 2
+    let posistion: Point //From the Point Struct we made
+    
+    init(x: Int, y: Int) {
+        self.posistion = Point(x: x, y: y)
+    }
+    
+    func decreaseHealth(factor: Int) {
+        life -= factor //setting life equal to life minus factor
+    }
+}
+
+class Tower {
+    let posistion: Point
+    var range: Int = 1
+    var strength: Int = 1
+    
+    init(x: Int, y: Int) {
+        self.posistion = Point(x: x, y: y)
+    }
+    //Type Enemy is from the class Enemy we made
+    func fireAtEnemy(enemy: Enemy) {
+        if inRange(self.posistion, range: self.range, target: enemy.posistion) {
+            
+            //this will be true initially, because we set life to 2 in the Enemy class
+            while enemy.life > 0 {
+                enemy.decreaseHealth(self.strength)
+                print("Enemy vanquished!")
+            }
+        }
+        else {
+            print("Enemy is out of range")
+        }
+    }
+    
+    //bool, because true or false, in range or not
+    func inRange(posistion: Point, range: Int, target: Point) -> Bool {
+        
+        let availablePosistions = posistion.surroundingPoints(withRange: range)
+        for point in availablePosistions {
+            if (point.x == target.x) && (point.y == target.y) {
+                return true //because if this if block is true, means target is in range
+            }
+        }
+        
+        return false // if not in range
+    }
+}
+
+let tower = Tower(x: 0, y: 0)
+let enemy = Enemy(x: 1, y: 1)
+
+tower.fireAtEnemy(enemy)
+
+
+
+
+
+
+
+
