@@ -99,10 +99,53 @@ class Tower {
     }
 }
 
+//this class now inherits from the Enemy class
+//means everything from Enemy is in here, without having to type it back out
+// So SuperEnemy is a subclass of Enemy, which is the parent class to SuperEnemy
+class SuperEnemy: Enemy {
+    // a bool constant named isSuper, set to true
+    let isSuper: Bool = true
+    
+    //override tells Swift we are changing this from the super class, Enemy
+    override init(x: Int, y: Int) {
+        super.init(x: x, y: y)
+        self.life = 50
+    }
+}
+
+class LaserTower: Tower {
+    override init(x: Int, y: Int) {
+        super.init(x: x, y: y)
+        self.range = 100
+        self.strength = 100
+    }
+    
+    override func fireAtEnemy(enemy: Enemy) {
+        while enemy.life >= 0 {
+            enemy.decreaseHealth(strength)
+        }
+        print("Enemy destroyed")
+    }
+}
+
+
+
 let tower = Tower(x: 0, y: 0)
 let enemy = Enemy(x: 1, y: 1)
 
+let laserTower = LaserTower(x: 0, y: 0)
+let superEnemy = SuperEnemy(x: 20, y: 20)
+superEnemy.life // shows 50, because that is what we defaulted it to
+laserTower.fireAtEnemy(superEnemy)
+
 tower.fireAtEnemy(enemy)
+
+
+
+
+
+
+
 
 
 
