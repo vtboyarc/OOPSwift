@@ -143,7 +143,10 @@ tower.fireAtEnemy(enemy)
 
 
 
-
+// Structs and Classes can both contained stored properties
+// We need to define an init method for classes, not structs
+// classes support inheritance - such as Enemy, and SuperEnemy inheriting from Enemy
+// No inheritance in structs
 
 
 
