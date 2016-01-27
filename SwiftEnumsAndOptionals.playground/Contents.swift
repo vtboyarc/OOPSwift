@@ -30,11 +30,44 @@ enum Day {
     case Sunday
 }
 
+enum DayType {
+    case Weekday
+    case Weekend
+}
+
 //By using the Day enum, heklps us avoid errors, if we misspell a day, it will complain that it isn't in the Day enum
-func weekdayOrWeekend(day: Day) -> String {
+//Returns DayType type
+func weekdayOrWeekend(day: Day) -> DayType {
     switch day {
-    case Day.Saturday, Day.Sunday: return "Weekend"
-    case Day.Monday, Day.Tuesday, Day.Wednesday, Day.Thursday, Day.Friday: return "Weekday"
-        // Don't need to worry about a defauly, enum protects us from that
+        //could do .Saturday, etc, without the Day in front, Swift knows what we mean. Allows for typing less code
+    case Day.Saturday, Day.Sunday: return DayType.Weekend
+    default: return DayType.Weekend //if it isn't Saturday or Sunday, it will then be this default
+            }
+}
+
+func muteNotifications(dayType: DayType) -> Bool {
+    switch dayType {
+    case DayType.Weekend: return true
+    case DayType.Weekday: return false
+        
     }
 }
+
+// Color Objects
+
+import CoreGraphics
+
+enum ColorComponents {
+    //CGFloat type from the Core Graphics framework
+    case RGB(CGFloat, CGFloat, CGFloat, CGFloat)
+    case HSB(CGFloat, CGFloat, CGFloat, CGFloat)
+
+}
+
+ColorComponents.RGB(100, 200, 100, 1.0)
+
+
+
+
+
+
