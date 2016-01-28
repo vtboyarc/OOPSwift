@@ -55,16 +55,27 @@ func muteNotifications(dayType: DayType) -> Bool {
 
 // Color Objects
 
-import CoreGraphics
+import UIKit
 
 enum ColorComponents {
     //CGFloat type from the Core Graphics framework
-    case RGB(CGFloat, CGFloat, CGFloat, CGFloat)
+    case RGB(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
     case HSB(CGFloat, CGFloat, CGFloat, CGFloat)
+    
+    //instance method
+    func color() -> UIColor {
+        switch self {
+        case .RGB(let redValue, let greenValue, let blueValue, let alphaValue):
+            return UIColor(red: redValue/255.0, green: greenValue/255.0, blue: blueValue/255.0, alpha: alphaValue)
+        case .HSB(let hueValue, let saturationValue, let brightnessValue, let alphaValue):
+            return UIColor(hue: hueValue/360.0, saturation: saturationValue/100.0, brightness: brightnessValue/100.0, alpha: alphaValue)
+            
+        }
+    }
 
 }
 
-ColorComponents.RGB(100, 200, 100, 1.0)
+ColorComponents.RGB(red: 100, green: 200, blue: 100, alpha: 1.0).color() //.color is our function in the ColorComponents enum
 
 
 
