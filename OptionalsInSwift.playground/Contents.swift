@@ -49,7 +49,46 @@ func createFriend(dict: [String : String]) -> Friend? {
     
 }
 
+// Raw Values
 
+enum Coin {
+    case Penny
+    case Nickel
+    case Dime
+    case Quarter
+}
 
+enum HTTPStatusCodes: Int {
+    case Continue = 100
+    case Success = 200
+    case Unauthorized = 401
+    case Forbidden = 403
+    case NotFound = 404
+    
+}
+
+let statusCode = 200
+if let httpCode = HTTPStatusCodes(rawValue: statusCode) {
+    print(httpCode)
+}
+
+// Nil Coalescing Operator
+
+let firstName: String? = "Adam"
+let username = "acarter"
+
+var displayName: String
+
+if firstName != nil {
+    displayName = firstName!
+} else {
+    displayName = username
+}
+
+//is firstName not equal to nil? If true, return firstName, otherwise, return username
+displayName = firstName != nil ? firstName! : username
+
+//this does the same thing as the above line, using ??, the Nil Coalescing Operator
+displayName = firstName ?? username
 
 
