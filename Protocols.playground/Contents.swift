@@ -1,4 +1,6 @@
 // Protocols ie Interface
+// Allows us to encapsulate common behavior
+// Protocols can inherit from other protocols 
 
 protocol FullyNameable {
     // whatever uses this protocol, must have a property fullName of type String
